@@ -12,30 +12,28 @@
  * @return {ListNode}
  */
 var reverse = function(head) {
-	var previous = null;
+	var prev = null;
 	var next = null;
 	while (head) {
 		next = head.next;
-		head.next = previous;
-		previous = head;
+		head.next = prev;
+		prev = head;
 		head = next;
 	}
-	return previous;
+	return prev;
 };
 var removeNthFromEnd = function(head, n) {
-	let answer = reverse(head);
-	let dummy = new ListNode();
-	dummy.next = answer;
-	if (n === 1) {
-		dummy = dummy.next;
-		return reverse(dummy.next);
+	var ans = new ListNode();
+	ans.next = reverse(head);
+	var temp = ans;
+	for (let i = 1; i < n; i++) {
+		temp = temp.next;
 	}
-	for (let i = 0; i < n - 1; i++) {
-		dummy = dummy.next;
+	if (temp.next !== null) {
+		temp.next = temp.next.next;
+	} else {
+		temp.next = null;
 	}
-	if (dummy.next !== null) {
-		dummy.next = dummy.next.next;
-	}
-	return reverse(answer);
+	return reverse(ans.next);
 };
-// @leet end
+// } @leet end
