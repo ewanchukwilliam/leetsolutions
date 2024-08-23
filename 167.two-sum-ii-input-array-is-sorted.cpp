@@ -12,6 +12,5 @@ public:
       }
     }
     return {l + 1, r + 1};
-  }
-};
+  } };
 // @leet end

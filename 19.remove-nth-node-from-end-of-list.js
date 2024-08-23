@@ -11,22 +11,11 @@
  * @param {number} n
  * @return {ListNode}
  */
-var reverse = function(head) {
-	var prev = null;
-	var next = null;
-	while (head) {
-		next = head.next;
-		head.next = prev;
-		prev = head;
-		head = next;
-	}
-	return prev;
-};
 var removeNthFromEnd = function(head, n) {
-	var ans = new ListNode();
-	ans.next = reverse(head);
-	var temp = ans;
-	for (let i = 1; i < n; i++) {
+	var answer = new ListNode();
+	answer.next = reverse(head);
+	var temp = answer;
+	for (let i = 0; i < n - 1; i++) {
 		temp = temp.next;
 	}
 	if (temp.next !== null) {
@@ -34,6 +23,17 @@ var removeNthFromEnd = function(head, n) {
 	} else {
 		temp.next = null;
 	}
-	return reverse(ans.next);
+	return reverse(answer.next);
+};
+var reverse = function(head) {
+	var previous = null;
+	var next = null;
+	while (head) {
+		next = head.next;
+		head.next = previous;
+		previous = head;
+		head = next;
+	}
+	return previous;
 };
 // } @leet end
