@@ -9,11 +9,11 @@ class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         return self.depth(root, 0)
 
-    def depth(self, root, count):
-        if not root:
-            return count
-        count += 1
-        return max(self.depth(root.left, count), self.depth(root.right, count))
+    def depth(self, root, ans):
+        if root is None:
+            return ans
+        ans += 1
+        return max(self.depth(root.left, ans), self.depth(root.right, ans))
 
 
 # @leet end

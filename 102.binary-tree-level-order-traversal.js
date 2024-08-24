@@ -13,19 +13,19 @@
  */
 var levelOrder = function(root) {
 	if (!root) return [];
-	var ans = [];
 	var queue = [root];
-	while (queue.length) {
+	var answer = [];
+	while (queue.length > 0) {
+		var length = queue.length;
 		var list = [];
-		var len = queue.length;
-		for (let i = 0; i < len; i++) {
-			var node = queue.shift();
-			list.push(node.val);
+		for (let i = 0; i < length; i++) {
+			node = queue.shift();
 			if (node.left !== null) queue.push(node.left);
 			if (node.right !== null) queue.push(node.right);
+			list.push(node.val);
 		}
-		ans.push(list);
+		answer.push(list);
 	}
-	return ans;
+	return answer;
 };
 // @leet end

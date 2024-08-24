@@ -11,19 +11,12 @@
  * @return {number}
  */
 var maxPathSum = function(root) {
-	var maxSum = -Infinity;
-	function maxGain(node) {
-		if (!node) return 0;
-
-		let leftGain = Math.max(maxGain(node.left), 0);
-		let rightGain = Math.max(maxGain(node.right), 0);
-
-		let currentPathSum = node.val + leftGain + rightGain;
-
-		maxSum = Math.max(maxSum, currentPathSum);
-
-		return node.val + Math.max(leftGain, rightGain);
+	return maxpath(root, 0);
+};
+var maxpath = function(root, ans) {
+	if (!root) {
+		return ans;
 	}
-	maxGain(root);
-	return maxSum;
+	ans += root.val;
+	return Math.max(maxpath(root.left, ans), maxpath(root.right, ans));
 };

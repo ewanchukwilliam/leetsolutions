@@ -13,12 +13,25 @@
  * @return {boolean}
  */
 var isSameTree = function(p, q) {
-	return helper(p, q);
-};
-
-var helper = function(p, q) {
-	if (!p && !q) return true;
-	if (!p || !q || p.val !== q.val) return false;
-	return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+	var queue1 = [p];
+	var queue2 = [q];
+	while (queue1.length > 0 && queue2.length > 0) {
+		node1 = queue1.shift();
+		node2 = queue2.shift();
+		if (!node1 && !node2) {
+			continue;
+		}
+		if (!node1 || !node2) {
+			return false;
+		}
+		if (node1.val !== node2.val) {
+			return false;
+		}
+		queue1.push(node1.left);
+		queue1.push(node1.right);
+		queue2.push(node2.left);
+		queue2.push(node2.right);
+	}
+	return queue1.length == queue2.length;
 };
 // @leet end

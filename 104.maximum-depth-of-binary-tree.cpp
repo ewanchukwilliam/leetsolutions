@@ -11,16 +11,17 @@
  * right(right) {}
  * };
  */
+#include <algorithm>
 #include <vector>
-using namespace std;
 class Solution {
 public:
   int maxDepth(TreeNode *root) { return depth(root, 0); }
-  int depth(TreeNode *root, int count) {
-    if (!root)
-      return count;
-    count++;
-    return max(depth(root->left, count), depth(root->right, count));
+  int depth(TreeNode *root, int ans) {
+    if (!root) {
+      return ans;
+    }
+    ans++;
+    return std::max(depth(root->left, ans), depth(root->right, ans));
   }
 };
 // @leet end

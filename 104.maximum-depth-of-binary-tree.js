@@ -14,9 +14,9 @@
 var maxDepth = function(root) {
 	return depth(root, 0);
 };
-var depth = function(root, count) {
-	if (!root) return count;
-	count++;
-	return Math.max(depth(root.left, count), depth(root.right, count));
+var depth = function(root, ans) {
+	if (!root) return ans;
+	ans++;
+	return Math.max(depth(root.left, ans), depth(root.right, ans));
 };
 // @leet end

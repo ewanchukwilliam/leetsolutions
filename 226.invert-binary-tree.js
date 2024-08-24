@@ -20,5 +20,4 @@ var invertTree = function(root) {
 	invertTree(root.right);
 	return root;
 };
-
 // @leet end
