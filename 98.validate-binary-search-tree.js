@@ -12,15 +12,13 @@
  * @return {boolean}
  */
 var isValidBST = function(root) {
-	return search(root,-Infinity,Infinity)
+	return helper(root, -Infinity, Infinity);
 };
-var search = function(root, low, high) {
-	if (!root) {
-		return true;
-	}
-	if (root.val <= low || root.val >= high) {
-		return false;
-	}
-	return search(root.left, low, root.val) && search(root.right, root.val, high);
+var helper = function(root, left, right) {
+	if (!root) return true;
+	if (root.val <= left || root.val >= right) return false;
+	return (
+		helper(root.left, left, root.val) && helper(root.right, root.val, right)
+	);
 };
 // @leet end

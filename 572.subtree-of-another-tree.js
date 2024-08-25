@@ -18,8 +18,8 @@ var isSubtree = function(root, subRoot) {
 		var len = queue.length;
 		for (let i = 0; i < len; i++) {
 			var node = queue.shift();
-			if (node.val === subRoot.val && match(node, subRoot)) return true;
-			if (node.left !== null) queue.push(node.left);
+			if (node.val === subRoot.val && match(node, subRoot))return true
+				if (node.left !== null) queue.push(node.left);
 			if (node.right !== null) queue.push(node.right);
 		}
 	}
