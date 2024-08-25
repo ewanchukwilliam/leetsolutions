@@ -14,7 +14,9 @@
 #include <climits>
 class Solution {
 public:
-  bool isValidBST(TreeNode *root) { return dfs(root, LLONG_MIN, LLONG_MAX); }
+  bool isValidBST(TreeNode *root) { 
+		return dfs(root, LLONG_MIN, LLONG_MAX); 
+	}
   bool dfs(TreeNode *root, long long low, long long high) {
     if (!root)
       return true;

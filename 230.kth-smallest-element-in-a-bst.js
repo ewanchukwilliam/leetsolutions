@@ -13,16 +13,20 @@
  * @return {number}
  */
 var kthSmallest = function(root, k) {
-	var ans = null;
-	var count = 0
-	var search = function(root) {
-		if (!root || ans) return;
-		search(root.left);
-		count++;
-		if (count === k) ans = root.val;
-		search(root.right);
+	var state = {
+		count: 0,
+		answer: -1,
 	};
-	search(root)
-	return ans;
+	helper(root, k, state);
+	return state.answer;
+};
+var helper = function(root, k, state) {
+	if (!root || state.answer !== -1) return;
+	helper(root.left, k, state);
+	state.count++;
+	if (state.count == k) {
+		state.answer = root.val;
+	}
+	helper(root.right, k, state);
 };
 // @leet end
