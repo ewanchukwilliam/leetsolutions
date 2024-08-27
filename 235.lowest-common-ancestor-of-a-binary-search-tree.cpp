@@ -13,8 +13,7 @@
 class Solution {
 public:
   TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
-    deque<TreeNode *> queue;
-    queue.push_back(root);
+    deque<TreeNode *> queue = {root};
     TreeNode *answer = root;
     while (queue.size()) {
       TreeNode *node = queue.front();
@@ -29,11 +28,8 @@ public:
 		return answer;
   }
   bool contains(TreeNode *root, TreeNode *val) {
-    if (!root)
-      return false;
-    if (root == val) {
-      return true;
-    }
+    if (!root) return false;
+		if (root == val) return true;
     return contains(root->left, val) || contains(root->right, val);
   }
 };

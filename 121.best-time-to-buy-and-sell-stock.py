@@ -1,14 +1,13 @@
 # @leet start
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        low = prices[0]
-        price = 0
-        for i in range(0, len(prices)):
-            if prices[i] < low:
-                low = prices[i]
-            if prices[i] - low > price:
-                price = prices[i] - low
-        return price
-
-
+        r = 0
+        profit = 0
+        min = inf
+        while r < len(prices):
+            if (prices[r] < min):
+                min = prices[r]
+            profit = max(profit, prices[r]-min)
+            r+=1
+        return profit
 # @leet end

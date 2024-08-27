@@ -4,17 +4,16 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-	var answer = 0;
-	var left = prices[0];
-	for (let i = 0; i < prices.length; i++) {
-		const right = prices[i];
-		if (left > prices[i]) {
-			left = prices[i];
+	var r = 0;
+	var min = Infinity;
+	var profit = 0;
+	while ( r < prices.length) {
+		if (prices[r] < min) {
+			min = prices[r];
 		}
-		if (right - left > answer) {
-			answer = right - left;
-		}
+		profit = Math.max(profit, prices[r] - min);
+		r++;
 	}
-	return answer;
+	return profit;
 };
 // @leet end
