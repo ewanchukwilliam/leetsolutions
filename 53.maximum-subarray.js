@@ -4,17 +4,19 @@
  * @return {number}
  */
 var maxSubArray = function(nums) {
-	if (nums.length === 1) {
-		return nums[0];
-	}
-	var sum = 0;
-	var min = 0;
-	var ans = nums[0];
+	var subarr = [];
+	var temp = 0;
 	for (let i = 0; i < nums.length; i++) {
-		sum += nums[i];
-		ans = Math.max(ans, sum - min);
-		min = Math.min(min, sum);
+		subarr.push(temp);
+		temp += nums[i];
 	}
-	return ans;
+	subarr.push(temp);
+	var answer = -Infinity;
+	var mindif = 0;
+	for (let i = 1; i < subarr.length; i++) {
+		answer = Math.max(answer, subarr[i] - mindif);
+		mindif = Math.min(mindif, subarr[i]);
+	}
+	return answer;
 };
 // @leet end
