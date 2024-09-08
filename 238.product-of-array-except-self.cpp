@@ -4,17 +4,17 @@ using namespace std;
 class Solution {
 public:
   vector<int> productExceptSelf(vector<int> &nums) {
-    vector<int> answer;
-		int prod=1;
-    answer.push_back(1);
-    for (int i = 0; i < nums.size() - 1; i++) {
-      prod *= nums[i];
-      answer.push_back(prod);
+    int size = nums.size();
+    vector<int> answer(size, 1);
+    int left = 1;
+    for (int i = 0; i < size; i++) {
+      answer[i] = left;
+      left *= nums[i];
     }
-		prod=1;
-    for (int i = nums.size() - 1; i > 0; i--) {
-      prod *= nums[i];
-			answer[i-1] *= prod;
+    int right = 1;
+    for (int i = size - 1; i >= 0; i--) {
+      answer[i] *= right;
+      right *= nums[i];
     }
     return answer;
   }
