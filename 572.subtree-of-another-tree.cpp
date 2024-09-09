@@ -15,27 +15,14 @@
 class Solution {
 public:
   bool isSubtree(TreeNode *root, TreeNode *subRoot) {
-    std::deque<TreeNode *> queue;
-    queue.push_back(root);
-    while (queue.size() > 0) {
-      TreeNode *node = queue.front();
-      queue.pop_front();
-      if (node->val == subRoot->val && isSame(node, subRoot)) {
-        return true;
-      }
-      if (node->left) queue.push_back(node->left);
-      if (node->right) queue.push_back(node->right);
-    }
-		return false;
+    if (!root) return false;
+    if (root->val == subRoot->val && matches(root, subRoot)) return true;
+    return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
   }
-  bool isSame(TreeNode *node1, TreeNode *node2) {
-    if (!node1 && !node2) {
-      return true;
-    }
-    if (!node1 || !node2 || node1->val != node2->val) {
-      return false;
-    }
-    return isSame(node1->left, node2->left) && isSame(node1->right, node2->right);
+  bool matches(TreeNode *p, TreeNode *q) {
+    if (!p && !q) return true;
+    if (!p || !q || p->val != q->val) return false;
+    return matches(p->left, q->left) && matches(p->right, q->right);
   }
 };
 // @leet end

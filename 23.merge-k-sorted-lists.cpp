@@ -10,26 +10,27 @@
  * };
  */
 #include <climits>
-#include <list>
 class Solution {
 public:
   ListNode *mergeKLists(vector<ListNode *> &lists) {
-    ListNode *answer = new ListNode(0);
+    ListNode *answer = new ListNode();
     ListNode *temp = answer;
     while (true) {
       int index = -1;
       int min = INT_MAX;
       for (int i = 0; i < lists.size(); i++) {
-        if (lists[i] != nullptr && lists[i]->val < min) {
+        if (lists[i] && lists[i]->val < min) {
           min = lists[i]->val;
           index = i;
         }
       }
-      if (index == -1)
+      if (index >= 0) {
+        temp->next = lists[index];
+        lists[index] = lists[index]->next;
+        temp = temp->next;
+      } else {
         break;
-      temp->next = lists[index];
-      lists[index] = lists[index]->next;
-      temp = temp->next;
+      }
     }
     return answer->next;
   }

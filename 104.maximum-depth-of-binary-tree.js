@@ -12,11 +12,20 @@
  * @return {number}
  */
 var maxDepth = function(root) {
-	return depth(root, 0);
-};
-var depth = function(root, ans) {
-	if (!root) return ans;
-	ans++;
-	return Math.max(depth(root.left, ans), depth(root.right, ans));
+	if (!root) {
+		return 0;
+	}
+	var queue = [root];
+	var answer = 0;
+	while (queue.length) {
+		var len = queue.length;
+		answer++;
+		for (let i = 0; i < len; i++) {
+			var node = queue.shift();
+			if (node.left !== null) queue.push(node.left);
+			if (node.right !== null) queue.push(node.right);
+		}
+	}
+	return answer;
 };
 // @leet end

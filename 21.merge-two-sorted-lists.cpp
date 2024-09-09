@@ -14,7 +14,7 @@ public:
   ListNode *mergeTwoLists(ListNode *list1, ListNode *list2) {
     ListNode *answer = new ListNode();
     ListNode *temp = answer;
-    while (list1 != nullptr && list2 != nullptr) {
+    while (list1 && list2) {
       if (list1->val < list2->val) {
         temp->next = list1;
         list1 = list1->next;
@@ -24,10 +24,10 @@ public:
       }
       temp = temp->next;
     }
-    if (list1 != nullptr) {
+    if (list1) {
       temp->next = list1;
     }
-    if (list2 != nullptr) {
+    if (list2) {
       temp->next = list2;
     }
     return answer->next;

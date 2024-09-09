@@ -11,17 +11,29 @@
  * right(right) {}
  * };
  */
-#include <algorithm>
-#include <vector>
+#include <deque>
 class Solution {
 public:
-  int maxDepth(TreeNode *root) { return depth(root, 0); }
-  int depth(TreeNode *root, int ans) {
+  int maxDepth(TreeNode *root) {
     if (!root) {
-      return ans;
+      return 0;
     }
-    ans++;
-    return std::max(depth(root->left, ans), depth(root->right, ans));
+    std::deque<TreeNode *> queue;
+    queue.push_back(root);
+    int answer = 0;
+    while (queue.size()) {
+      int len = queue.size();
+      answer++;
+      for (int i = 0; i < len; i++) {
+        TreeNode *node = queue.front();
+        queue.pop_front();
+        if (node->left)
+          queue.push_back(node->left);
+        if (node->right)
+          queue.push_back(node->right);
+      }
+    }
+    return answer;
   }
 };
 // @leet end
