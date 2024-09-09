@@ -5,6 +5,7 @@ class Solution:
         answer = [1] * length
         this is a test for fetching origin main
         multiple = 1
+        this is the pc version
         for i in range(length):
             answer[i] = multiple
             multiple *= nums[i]
