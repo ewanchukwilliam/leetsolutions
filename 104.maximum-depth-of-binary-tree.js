@@ -12,20 +12,13 @@
  * @return {number}
  */
 var maxDepth = function(root) {
+	return dfs(root, 0);
+};
+var dfs = function(root, answer) {
 	if (!root) {
-		return 0;
+		return answer--;
 	}
-	var queue = [root];
-	var answer = 0;
-	while (queue.length) {
-		var len = queue.length;
-		answer++;
-		for (let i = 0; i < len; i++) {
-			var node = queue.shift();
-			if (node.left !== null) queue.push(node.left);
-			if (node.right !== null) queue.push(node.right);
-		}
-	}
-	return answer;
+	answer++;
+	return Math.max(dfs(root.left, answer), dfs(root.right, answer));
 };
 // @leet end

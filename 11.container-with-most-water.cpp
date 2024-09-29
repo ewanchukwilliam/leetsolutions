@@ -1,24 +1,23 @@
 // @leet start
 #include <algorithm>
+#include <climits>
 #include <vector>
 using namespace std;
 class Solution {
 public:
   int maxArea(vector<int> &height) {
-  int answer = 0;
-  int leftmax = 0;
-  int rightmax = 0;
-  int left = 0;
-  int right = height.size() - 1;
-  while (left < right) {
-    answer = max(answer, min(height[left], height[right]) * (right - left));
-    if (height[left] < height[right]) {
-      left++;
-    } else {
-      right--;
+    int l = 0;
+    int r = height.size()-1;
+    int answer = 0;
+    while (l < r) {
+      answer = max(answer, (r - l) * min(height[l], height[r]) );
+      if (height[l] < height[r]) {
+        l++;
+      }else {
+      	r--;
+      }
     }
-  }
-  return answer;
+		return answer;
   }
 };
 // @leet end

@@ -15,14 +15,16 @@
  * }
  */
 class Solution {
-  public boolean isSameTree(TreeNode p, TreeNode q) {
-    if (null==p && null==q) {
-      return true;
+  public int maxDepth(TreeNode root) { 
+		return dfs(root, 0);
+	}
+
+  public int dfs(TreeNode root, int depth) {
+    if (root == null) {
+      return depth--;
     }
-    if (null==p || null==q || p.val != q.val) {
-      return false;
-    }
-    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
-  }
+    depth++;
+    return Math.max(dfs(root.left, depth), dfs(root.right, depth));
+  };
 }
 // @leet end

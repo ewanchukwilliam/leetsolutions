@@ -5,17 +5,17 @@
  */
 var maxArea = function(height) {
 	var l = 0;
-	var r = height.length - 1;
-	var ans = 0;
-	while (l < r) {
-		ans = Math.max(ans, (r - l) * Math.min(height[l], height[r]));
-		if (height[l] < height[r]) {
+	var r = height.length-1;
+	var answer =0;
+	while (l<r) {
+		answer = Math.max(answer, (r-l)*Math.min(height[r],height[l]));
+		if (height[l]<height[r]) {
 			l++;
-		} else {
+		}else {
 			r--;
 		}
 	}
-	return ans;
+	return answer;
+    
 };
-
 // @leet end

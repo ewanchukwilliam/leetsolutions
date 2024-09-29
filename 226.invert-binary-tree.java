@@ -15,14 +15,16 @@
  * }
  */
 class Solution {
-  public boolean isSameTree(TreeNode p, TreeNode q) {
-    if (null==p && null==q) {
-      return true;
+    public TreeNode invertTree(TreeNode root) {
+			if (root==null) {
+				return root;
+			}
+			TreeNode temp = root.left;
+			root.left = root.right;
+			root.right=temp;
+			invertTree(root.left);
+			invertTree(root.right);
+			return root;
     }
-    if (null==p || null==q || p.val != q.val) {
-      return false;
-    }
-    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
-  }
 }
 // @leet end
