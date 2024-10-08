@@ -9,7 +9,7 @@
 struct ListNode *reverseList(struct ListNode *head) {
   struct ListNode *previous = NULL;
   struct ListNode *next = NULL;
-  while (head != NULL) {
+  while (head) {
     next = head->next;
     head->next = previous;
     previous = head;

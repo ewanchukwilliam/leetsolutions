@@ -1,24 +1,16 @@
 // @leet start
 #include <algorithm>
 #include <vector>
-using namespace std;
 class Solution {
 public:
   int maxSubArray(vector<int> &nums) {
-    vector<int> subarr;
-    int temp = 0;
-    for (int i = 0; i < nums.size(); i++) {
-      subarr.push_back(temp);
-      temp += nums[i];
+    int maxHere = nums[0];
+    int maxAnswer = nums[0];
+    for (int i = 1; i < nums.size(); i++) {
+      maxHere = std::max(nums[i], maxHere + nums[i]);
+      maxAnswer = std::max(maxHere, maxAnswer);
     }
-    subarr.push_back(temp);
-    int answer = INT_MIN;
-    int mindif = 0;
-    for (int i = 1; i < subarr.size(); i++) {
-      answer = max(answer, subarr[i] - mindif);
-      mindif = min(mindif, subarr[i]);
-    }
-    return answer;
+		return maxAnswer;
   }
 };
 // @leet end

@@ -1,19 +1,19 @@
 // @leet start
-#include <climits>
 class Solution {
 public:
   int maxProfit(vector<int> &prices) {
-    int i = 0;
-    int profit = 0;
-    int min = INT_MAX;
-    while (i < prices.size()) {
-      if (prices[i] < min)
-        min = prices[i];
-      if (profit < prices[i] - min)
-        profit = prices[i] - min;
-      i++;
+    int l = 0;
+    int r = 0;
+    int answer = 0;
+    while (r < prices.size()) {
+      if (< prices[r] ) {
+        answer = max(answer, prices[r] - prices[l]);
+      } else {
+        l = r;
+      }
+      r++;
     }
-    return profit;
+    return answer;
   }
 };
 // @leet end

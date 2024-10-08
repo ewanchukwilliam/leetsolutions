@@ -9,16 +9,16 @@ class Solution:
         answer = ListNode()
         temp = answer
         while True:
-            min = 10**4 + 1
-            ind = -1
+            index = -1
+            min = inf
             for i in range(0, len(lists)):
-                if lists[i] is not None and lists[i].val < min:
+                if lists[i] != None and lists[i].val < min:
+                    index = i
                     min = lists[i].val
-                    ind = i
-            if ind == -1:
+            if index == -1:
                 break
-            temp.next = lists[ind]
-            lists[ind] = lists[ind].next
+            temp.next = lists[index]
+            lists[index] = lists[index].next
             temp = temp.next
         return answer.next
 

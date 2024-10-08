@@ -9,7 +9,6 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-#include <climits>
 class Solution {
 public:
   ListNode *mergeKLists(vector<ListNode *> &lists) {
@@ -20,19 +19,18 @@ public:
       int min = INT_MAX;
       for (int i = 0; i < lists.size(); i++) {
         if (lists[i] && lists[i]->val < min) {
-          min = lists[i]->val;
           index = i;
+          min = lists[i]->val;
         }
       }
-      if (index >= 0) {
-        temp->next = lists[index];
-        lists[index] = lists[index]->next;
-        temp = temp->next;
-      } else {
+      if (index == -1) {
         break;
       }
+			temp->next=lists[index];
+			temp=temp->next;
+			lists[index]=lists[index]->next;
     }
-    return answer->next;
+		return answer->next;
   }
 };
 // @leet end

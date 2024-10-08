@@ -11,16 +11,16 @@
  */
 class Solution {
 public:
-  ListNode *reverseList(ListNode *head) {
-    ListNode *previous = nullptr;
-    ListNode *next = nullptr;
-    while (head) {
-      next = head->next;
-      head->next = previous;
-      previous = head;
-      head = next;
+    ListNode* reverseList(ListNode* head) {
+		ListNode* previous = nullptr;
+		ListNode* next = nullptr;
+		while (head) {
+			next= head->next;
+			head->next = previous;
+			previous = head;
+			head=next;
+		}
+		return previous;
     }
-    return previous;
-  }
 };
 // @leet end

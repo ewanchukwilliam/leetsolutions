@@ -1,21 +1,16 @@
 // @leet start
-#include <algorithm>
-#include <unordered_map>
-#include <vector>
-using namespace std;
 class Solution {
 public:
   bool containsDuplicate(vector<int> &nums) {
-    unordered_map<int, int> maps;
-		for (int i = 0; i < nums.size(); i++) {
-    if (maps.find(nums[i])== maps.end()) {
-				maps[nums[i]]=1;
-    }else {
-    	return false;
+    unordered_map<int, bool> map;
+    for (int i = 0; i < nums.size(); i++) {
+      if (map.find(nums[i]) == map.end()) {
+        map[nums[i]] = true;
+      } else {
+        return true;
+      }
     }
-			
-		}
-	return true;
+    return false;
   }
 };
 // @leet end

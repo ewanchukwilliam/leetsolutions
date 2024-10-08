@@ -15,11 +15,11 @@ class Solution {
     ListNode temp = answer;
     while (true) {
       int index = -1;
-      int minval = Integer.MAX_VALUE;
+      int min = Integer.MAX_VALUE;
       for (int i = 0; i < lists.length; i++) {
-        if (lists[i] != null && lists[i].val < minval) {
+        if (lists[i] != null && lists[i].val < min) {
           index = i;
-          minval = lists[i].val;
+          min = lists[i].val;
         }
       }
       if (index == -1) {
@@ -29,7 +29,7 @@ class Solution {
       lists[index] = lists[index].next;
       temp = temp.next;
     }
-		return answer.next;
+    return answer.next;
   }
 }
 // @leet end

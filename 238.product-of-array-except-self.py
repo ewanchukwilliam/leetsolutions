@@ -1,16 +1,19 @@
 # @leet start
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        length = len(nums)
-        answer = [1] * length
-        multiple = 1
-        for i in range(length):
-            answer[i] = multiple
-            multiple *= nums[i]
-        multiple = 1
-        for i in range(length - 1, -1, -1):
-            answer[i] *= multiple
-            multiple *= nums[i]
+        left = []
+        right = []
+        lefty = 1
+        righty = 1
+        for i in range(0, len(nums)):
+            left.append(lefty)
+            right.append(righty)
+            lefty *= nums[i]
+            righty *= nums[len(nums) - i - 1]
+
+        answer = []
+        for i in range(0, len(nums)):
+            answer.append(left[i] * right[len(nums) - i - 1])
         return answer
 
 

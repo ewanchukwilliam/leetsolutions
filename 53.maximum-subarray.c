@@ -1,22 +1,19 @@
 // @leet start
-int maxSubArray(int *nums, int numsSize) {
-  int subarr[numsSize + 1];
-  int temp = 0;
-  for (int i = 0; i < numsSize; i++) {
-    subarr[i] = temp;
-    temp += nums[i];
+int max(int a, int b) {
+  if (a < b) {
+    return b;
   }
-  subarr[numsSize] = temp;
-  int answer = INT_MIN;
-  int mindif = 0;
-  for (int i = 1; i < numsSize + 1; i++) {
-    if (answer < subarr[i] - mindif) {
-      answer = subarr[i] - mindif;
-    }
-    if (mindif > subarr[i]) {
-      mindif = subarr[i];
-    }
+  return a;
+}
+
+int maxSubArray(int *nums, int numsSize) {
+  int temp = nums[0];
+  int answer = nums[0];
+  for (int i = 1; i < numsSize; i++) {
+    temp = max(nums[i], nums[i] + temp);
+    answer = max(answer, temp);
   }
   return answer;
 }
+
 // @leet end
