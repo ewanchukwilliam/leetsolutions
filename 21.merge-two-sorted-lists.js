@@ -31,6 +31,5 @@ var mergeTwoLists = function(list1, list2) {
 		temp.next = list2;
 	}
 	return answer.next;
-	 
 };
 // @leet end

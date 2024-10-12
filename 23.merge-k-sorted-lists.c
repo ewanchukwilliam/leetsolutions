@@ -6,33 +6,34 @@
  *     struct ListNode *next;
  * };
  */
-
-int findmin(struct ListNode **lists, int size) {
-  int index = -1;
+int smallestList(struct ListNode **lists, int listsSize) {
+  int ind = -1;
   int min = INT_MAX;
-  for (int i = 0; i < size; i++) {
+  for (int i = 0; i < listsSize; i++) {
     if (lists[i] && lists[i]->val < min) {
-      index = i;
+      ind = i;
       min = lists[i]->val;
     }
   }
-  return index;
+  return ind;
 }
 struct ListNode *mergeKLists(struct ListNode **lists, int listsSize) {
-  int index = findmin(lists, listsSize);
-  if (index == -1) {
+  struct ListNode *answer;
+  int ind = smallestList(lists, listsSize);
+  if (ind == -1) {
     return NULL;
   }
-  struct ListNode *answer = lists[index];
+  answer = lists[ind];
+  lists[ind] = lists[ind]->next;
   struct ListNode *temp = answer;
-  lists[index] = lists[index]->next;
   while (true) {
-    index = findmin(lists, listsSize);
-    if (index == -1)
+    ind = smallestList(lists, listsSize);
+    if (ind == -1) {
       break;
-    temp->next = lists[index];
+    }
+    temp->next = lists[ind];
+    lists[ind] = lists[ind]->next;
     temp = temp->next;
-    lists[index] = lists[index]->next;
   }
   return answer;
 }

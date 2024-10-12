@@ -13,24 +13,22 @@
 var mergeKLists = function(lists) {
 	var answer = new ListNode();
 	var temp = answer;
-	var flag = true;
-	while (flag) {
-		flag = false;
+	while (true) {
+		var ind = -1;
 		var min = Infinity;
-		var index = -1;
 		for (let i = 0; i < lists.length; i++) {
 			const list = lists[i];
-			if (list !== null && list.val < min) {
-				flag = true;
+			if (list && list.val < min) {
+				ind = i;
 				min = list.val;
-				index = i;
 			}
 		}
-		if (index !== -1) {
-			temp.next = lists[index];
-			lists[index] = lists[index].next;
-			temp = temp.next;
+		if (ind === -1) {
+			break;
 		}
+		temp.next = lists[ind];
+		lists[ind] = lists[ind].next;
+		temp = temp.next;
 	}
 	return answer.next;
 };
