@@ -1,15 +1,14 @@
 # @leet start
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
-        maxtemp = nums[0]
-        mintemp = nums[0]
+        mini = nums[0]
+        maxi = nums[0]
         answer = nums[0]
         for i in range(1, len(nums)):
-            num = nums[i]
-            temp = max(num, num * maxtemp, num * mintemp)
-            mintemp = min(num, num * maxtemp, num * mintemp)
-            maxtemp = temp
-            answer = max(answer, maxtemp)
+            temp = min(nums[i], nums[i] * mini, nums[i] * maxi)
+            maxi = max(nums[i], nums[i] * mini, nums[i] * maxi)
+            mini = temp
+            answer = max(answer, maxi)
         return answer
 
 

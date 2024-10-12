@@ -1,15 +1,14 @@
 // @leet start
 class Solution {
     public int maxProduct(int[] nums) {
-		int min = nums[0];
-		int max = nums[0];
-		int answer = nums[0];
-		for (int i = 1; i < nums.length; i++) {
-			int num = nums[i];
-			int temp = Math.min(num, Math.min(num * min, num * max));
-			max = Math.max(num, Math.max(num * min, num * max));
-			min = temp;
-			answer = Math.max(answer, max);
+		int mini = nums[0];
+		int maxi = nums[0];
+		int answer  = nums[0];
+		for(int i = 1; i< nums.length; i++){
+			int temp = Math.min(nums[i],  Math.min(nums[i] * mini, nums[i] * maxi));
+			maxi = Math.max(nums[i],  Math.max(nums[i] * mini, nums[i] * maxi));
+			mini = temp;
+			answer = Math.max(answer, maxi);
 		}
 		return answer;
     }

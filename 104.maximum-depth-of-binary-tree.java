@@ -15,16 +15,13 @@
  * }
  */
 class Solution {
-  public int maxDepth(TreeNode root) { 
-		return dfs(root, 0);
-	}
-
-  public int dfs(TreeNode root, int depth) {
+  public int maxDepth(TreeNode root) { return dfs(root, 0); }
+  public int dfs(TreeNode root, int answer) {
     if (root == null) {
-      return depth--;
+      return answer--;
     }
-    depth++;
-    return Math.max(dfs(root.left, depth), dfs(root.right, depth));
-  };
+    answer++;
+    return Math.max(dfs(root.left, answer), dfs(root.right, answer));
+  }
 }
 // @leet end

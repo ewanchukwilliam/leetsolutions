@@ -11,18 +11,16 @@
  * right(right) {}
  * };
  */
+#include <algorithm>
 class Solution {
 public:
-  int maxDepth(TreeNode *root) {
-    int answer = 0;
-    return dfs(root, answer);
-  }
+  int maxDepth(TreeNode *root) { return dfs(root, 0); }
   int dfs(TreeNode *root, int answer) {
     if (!root) {
       return answer--;
     }
     answer++;
-    return max(dfs(root->left, answer),dfs(root->right, answer));
+    return std::max(dfs(root->left, answer), dfs(root->right, answer));
   }
 };
 // @leet end
