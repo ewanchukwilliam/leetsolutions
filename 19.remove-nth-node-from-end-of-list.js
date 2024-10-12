@@ -12,28 +12,24 @@
  * @return {ListNode}
  */
 var removeNthFromEnd = function(head, n) {
-	var answer = new ListNode();
-	answer.next = reverse(head);
-	var temp = answer;
-	for (let i = 0; i < n - 1; i++) {
-		temp = temp.next;
+	var fast = head;
+	var slow = head;
+	var i = 0;
+	while (fast) {
+		fast=fast.next;
+		if (i>n) {
+			slow=slow.next;
+		}
+		i++;
 	}
-	if (temp.next !== null) {
-		temp.next = temp.next.next;
-	} else {
-		temp.next = null;
+	if (i===n) {
+		return head.next;
 	}
-	return reverse(answer.next);
-};
-var reverse = function(head) {
-	var previous = null;
-	var next = null;
-	while (head) {
-		next = head.next;
-		head.next = previous;
-		previous = head;
-		head = next;
+	if (slow.next) {
+		slow.next=slow.next.next;
+	}else{
+		slow.next=null;
 	}
-	return previous;
+	return head;
 };
 // } @leet end

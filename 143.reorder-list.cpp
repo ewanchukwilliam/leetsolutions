@@ -12,31 +12,23 @@
 class Solution {
 public:
   void reorderList(ListNode *head) {
-    ListNode *slow = head;
     ListNode *fast = head;
-    while (fast != nullptr && fast->next != nullptr) {
+    ListNode *slow = head;
+    while (fast && fast->next) {
       slow = slow->next;
       fast = fast->next->next;
     }
-    ListNode *farSide = slow->next;
+    ListNode *lower = slow->next;
     slow->next = nullptr;
-    farSide = reverse(farSide);
-
-    ListNode *answer = new ListNode();
-    ListNode *temp = answer;
-    while (head || farSide) {
-      if (head) {
-        temp->next = head;
-        head = head->next;
-        temp = temp->next;
-      }
-      if (farSide) {
-        temp->next = farSide;
-        farSide = farSide->next;
-        temp = temp->next;
-      }
+    lower = reverse(lower);
+    while (head && lower) {
+      ListNode *temp = head->next;
+      head->next = lower;
+      lower = lower->next;
+			head=head->next;
+			head->next=temp;
+			head=head->next;
     }
-    head = answer->next;
   }
   ListNode *reverse(ListNode *head) {
     ListNode *previous = nullptr;
