@@ -15,16 +15,19 @@
  * }
  */
 class Solution {
-    public TreeNode invertTree(TreeNode root) {
-		if (root==null) {
-			return root;
-		}
-		TreeNode temp = root.left;
-		root.left = root.right;
-		root.right= temp;
-		invertTree(root.left);
-		invertTree(root.right);
-		return root;
+  private int answer = Integer.MIN_VALUE;
+  public int maxPathSum(TreeNode root) {
+  	dfs(root);
+    return answer;
+  }
+  public int dfs(TreeNode root) {
+    if (root == null) {
+      return 0;
     }
+    int left = Math.max(0, dfs(root.left));
+    int right = Math.max(0, dfs(root.right));
+    answer = Math.max(answer, root.val + left + right);
+    return root.val + Math.max(left, right);
+  }
 }
 // @leet end

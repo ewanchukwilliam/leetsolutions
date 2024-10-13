@@ -13,12 +13,14 @@ int max(int a, int b) {
   }
   return a;
 }
+
 int dfs(struct TreeNode *root, int answer) {
   if (!root) {
-    return answer--;
+    return answer - 1;
   }
   answer++;
   return max(dfs(root->left, answer), dfs(root->right, answer));
 }
-int maxDepth(struct TreeNode *root) { return dfs(root, 0); }
+
+int maxDepth(struct TreeNode *root) { return dfs(root, 1); }
 // @leet end

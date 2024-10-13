@@ -12,11 +12,11 @@
  * @return {number}
  */
 var maxDepth = function(root) {
-	return dfs(root, 0);
+	return dfs(root, 1);
 };
 var dfs = function(root, answer) {
 	if (!root) {
-		return answer--;
+		return answer - 1;
 	}
 	answer++;
 	return Math.max(dfs(root.left, answer), dfs(root.right, answer));

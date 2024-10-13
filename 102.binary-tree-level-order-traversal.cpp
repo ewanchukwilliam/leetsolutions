@@ -16,26 +16,25 @@
 class Solution {
 public:
   vector<vector<int>> levelOrder(TreeNode *root) {
-    if (!root)
-      return {};
-    std::vector<std::vector<int>> answer;
-    std::deque<TreeNode*> queue;
-    queue.push_back(root);
-    while (queue.size() > 0) {
-      std::vector<int> list;
-      int length = queue.size();
-      for (int i = 0; i < length; i++) {
-        TreeNode *node = queue.front();
-        queue.pop_front();
-        if (node->left)
-          queue.push_back(node->left);
-        if (node->right)
-          queue.push_back(node->right);
-        list.push_back(node->val);
-      }
-      answer.push_back(list);
-    }
-    return answer;
+		if (!root) {
+			return {};
+		}
+		std::deque<TreeNode*> q;
+		q.push_back(root);
+		std::vector<std::vector<int>> answer;
+		while (q.size()) {
+			int len = q.size();
+			std::vector<int>row;
+			for (int i = 0; i < len; i++) {
+				TreeNode* node = q.front();
+				q.pop_front();
+				row.push_back(node->val);
+				if(node->left)q.push_back(node->left);
+				if(node->right)q.push_back(node->right);
+			}
+			answer.push_back(row);
+		}
+		return answer;
   }
 };
 // @leet end
