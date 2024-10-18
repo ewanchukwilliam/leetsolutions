@@ -1,8 +1,6 @@
 // @leet start
-class Solution {
-public:
-  int trap(vector<int> &height) {
-    int l = 0, r = height.size() - 1;
+int trap(int* height, int heightSize) {
+	  int l = 0, r = heightSize - 1;
     int lmax = height[l], rmax = height[r];
     int answer = 0;
     while (l < r) {
@@ -23,6 +21,6 @@ public:
       }
     }
     return answer;
-  }
-};
+
+}
 // @leet end
