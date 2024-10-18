@@ -11,18 +11,18 @@
  * right(right) {}
  * };
  */
-#include <climits>
 class Solution {
 public:
-  bool isValidBST(TreeNode *root) { 
-		return dfs(root, LLONG_MIN, LLONG_MAX); 
-	}
+  bool isValidBST(TreeNode *root) { return dfs(root, LLONG_MIN, LLONG_MAX); }
   bool dfs(TreeNode *root, long long low, long long high) {
-    if (!root)
+    if (!root) {
       return true;
-    if (root->val <= low || root->val >= high)
+    }
+    if (root->val <= low || root->val >= high) {
       return false;
-    return dfs(root->left, low, root->val) && dfs(root->right, root->val, high);
+    }
+    return dfs(root->left, low, root->val) &&
+           dfs(root->right, root->val, high);
   }
 };
 // @leet end

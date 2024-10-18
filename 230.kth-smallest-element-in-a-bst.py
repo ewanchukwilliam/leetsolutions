@@ -7,17 +7,20 @@
 #         self.right = right
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k) -> int:
-        stack = []
-        current = root
-        while True:
-            while current is not None:
-                stack.append(current)
-                current = current.left
-            current = stack.pop()
-            k -= 1
-            if k == 0:
-                return current.val
-            current = current.right
+        count = [0]
+        answer = [0]
+        self.dfs(root, k, count, answer)
+        return answer[0]
+
+    def dfs(self, root, k, count, answer):
+        if root is None:
+            return
+        self.dfs(root.left, k, count, answer)
+        count[0] += 1
+        if count[0] == k:
+            answer[0] = root.val
+            return
+        self.dfs(root.right, k, count, answer)
 
 
 # @leet end

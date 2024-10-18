@@ -12,13 +12,12 @@
  * @return {boolean}
  */
 var isValidBST = function(root) {
-	return helper(root, -Infinity, Infinity);
+	return dfs(root, -Infinity, Infinity);
 };
-var helper = function(root, left, right) {
+var dfs = function(root, low, high) {
 	if (!root) return true;
-	if (root.val <= left || root.val >= right) return false;
-	return (
-		helper(root.left, left, root.val) && helper(root.right, root.val, right)
-	);
+	if (root.val <= low || root.val >= high) return false;
+	return dfs(root.left, low, root.val) && dfs(root.right, root.val, high);
 };
+
 // @leet end

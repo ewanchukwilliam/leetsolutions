@@ -13,21 +13,13 @@
  * @return {boolean}
  */
 var isSubtree = function(root, subRoot) {
-	var queue = [root];
-	while (queue.length) {
-		var len = queue.length;
-		for (let i = 0; i < len; i++) {
-			var node = queue.shift();
-			if (node.val === subRoot.val && match(node, subRoot))return true
-				if (node.left !== null) queue.push(node.left);
-			if (node.right !== null) queue.push(node.right);
-		}
-	}
-	return false;
+	if(!root)return false;
+	if(root.val == subRoot.val && dfs(root,subRoot))return true;
+	return isSubtree(root.left,subRoot) || isSubtree(root.right,subRoot);
 };
-var match = function(node1, node2) {
-	if (!node1 && !node2) return true;
-	if (!node1 || !node2 || node1.val !== node2.val) return false;
-	return match(node1.left, node2.left) && match(node1.right, node2.right);
-};
+var dfs = function(p,q){
+	if(!p && !q)return true;
+	if(!p || !q || p.val != q.val)return false;
+	return dfs(p.left,q.left) && dfs(p.right,q.right);
+}
 // @leet end

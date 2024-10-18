@@ -7,13 +7,16 @@
 #         self.right = right
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        return self.valid(root, -inf, inf)
+        return self.dfs(root, -inf, inf)
 
-    def valid(self, root: Optional[TreeNode], low, high) -> bool:
-        if not root:
+    def dfs(self, root: Optional[TreeNode], low, high) -> bool:
+        if root is None:
             return True
         if root.val <= low or root.val >= high:
             return False
-        return self.valid(root.left, low, root.val) and self.valid(root.right, root.val, high)
+        return self.dfs(root.left, low, root.val) and self.dfs(
+            root.right, root.val, high
+        )
+
 
 # @leet end

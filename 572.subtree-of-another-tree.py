@@ -7,25 +7,18 @@
 #         self.right = right
 class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        queue = [root]
-        while len(queue) > 0:
-            length = len(queue)
-            for i in range(0, length):
-                node = queue.pop(0)
-                if node.val == subRoot.val and self.dfs(node, subRoot):
-                    return True
-                if node.left is not None:
-                    queue.append(node.left)
-                if node.right is not None:
-                    queue.append(node.right)
-        return False
-
-    def dfs(self, node1: Optional[TreeNode], node2: Optional[TreeNode]) -> bool:
-        if node1 is None and node2 is None:
-            return True
-        if node1 is None or node2 is None or node1.val != node2.val:
+        if root is None:
             return False
-        return self.dfs(node1.left, node2.left) and self.dfs(node1.right, node2.right)
+        if root.val == subRoot.val and self.dfs(root, subRoot):
+            return True
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+
+    def dfs(self, p, q):
+        if p is None and q is None:
+            return True
+        if p is None or q is None or p.val != q.val:
+            return False
+        return self.dfs(p.left, q.left) and self.dfs(p.right, q.right)
 
 
 # @leet end

@@ -11,18 +11,25 @@
  * right(right) {}
  * };
  */
-#include <deque>
 class Solution {
 public:
   bool isSubtree(TreeNode *root, TreeNode *subRoot) {
-    if (!root) return false;
-    if (root->val == subRoot->val && matches(root, subRoot)) return true;
-    return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
-  }
-  bool matches(TreeNode *p, TreeNode *q) {
-    if (!p && !q) return true;
-    if (!p || !q || p->val != q->val) return false;
-    return matches(p->left, q->left) && matches(p->right, q->right);
+		if (!root) {
+			return false;
+		} 
+		if (root->val==subRoot->val && dfs(root, subRoot)) {
+			return true;
+		}
+		return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
+	}
+  bool dfs(TreeNode *p, TreeNode *q) {
+    if (!p && !q) {
+      return true;
+    }
+    if (!p || !q || p->val != q->val) {
+      return false;
+    }
+    return dfs(p->left, q->left) && dfs(p->right, q->right);
   }
 };
 // @leet end

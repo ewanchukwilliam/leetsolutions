@@ -11,24 +11,24 @@
  * right(right) {}
  * };
  */
-#include <stack>
 class Solution {
 public:
   int kthSmallest(TreeNode *root, int k) {
-    stack<TreeNode *> stack;
-    TreeNode *current = root;
-    while (true) {
-      while (current) {
-        stack.push(current);
-        current = current->left;
-      }
-      current = stack.top();
-      stack.pop();
-      k--;
-      if (k == 0)
-        return current->val;
-      current = current->right;
+    int count = 0;
+    int answer = 0;
+    dfs(root, k, &count, &answer);
+    return answer;
+  }
+  void dfs(TreeNode *root, int k, int *count, int *answer) {
+    if (!root)
+      return;
+    dfs(root->left, k, count, answer);
+    (*count)++;
+    if (*count == k) {
+      *answer = root->val;
+      return;
     }
+    dfs(root->right, k, count, answer);
   }
 };
 // @leet end

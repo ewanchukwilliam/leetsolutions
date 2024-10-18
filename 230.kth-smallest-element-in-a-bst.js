@@ -13,17 +13,21 @@
  * @return {number}
  */
 var kthSmallest = function(root, k) {
-	var stack = [];
-	var current = root;
-	while (true) {
-		while (current !== null) {
-			stack.push(current);
-			current = current.left;
-		}
-		current = stack.pop();
-		k--;
-		if (k === 0) return current.val;
-		current = current.right;
-	}
+		var count = [0];
+		var answer = [0];
+		dfs(root, k, count, answer);
+		return answer[0];
 };
+function dfs(root, k, count, answer){
+		if (!root) {
+			return;
+		}
+		dfs(root.left, k, count, answer);
+		count[0]++;
+		if (count[0]==k) {
+			answer[0]=root.val;
+				return;
+		}
+		dfs(root.right, k, count, answer);
+}
 // @leet end
