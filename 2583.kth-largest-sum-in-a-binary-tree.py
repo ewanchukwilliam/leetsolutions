@@ -22,7 +22,7 @@ class Solution:
             levels.append(sum)
         if len(levels) < k:
             return -1
-        levels.sort()
+        levels.sort
         return levels[len(levels) - k]
 
 
