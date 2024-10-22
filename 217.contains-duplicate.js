@@ -6,6 +6,7 @@
 var containsDuplicate = function(nums) {
 	let hash = new Map();
 	for (let i = 0; i < nums.length; i++) {
+
 		const number = nums[i];
 		if (hash.has(number)) {
 			return true;
