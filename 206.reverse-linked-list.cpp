@@ -12,15 +12,15 @@
 class Solution {
 public:
   ListNode *reverseList(ListNode *head) {
+    ListNode *prev = nullptr;
     ListNode *next = nullptr;
-    ListNode *previous = nullptr;
     while (head) {
       next = head->next;
-      head->next = previous;
-      previous = head;
+      head->next = prev;
+      prev = head;
       head = next;
     }
-    return previous;
+    return prev;
   }
 };
 // @leet end
