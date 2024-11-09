@@ -13,13 +13,13 @@
  */
 class Solution {
 public:
-  int maxDepth(TreeNode *root) { return dfs(root, 1); }
-  int dfs(TreeNode *root, int answer) {
+  int maxDepth(TreeNode *root) { return dfs(root, 0); }
+  int dfs(TreeNode *root, int depth) {
     if (!root) {
-      return answer - 1;
+      return depth;
     }
-    answer++;
-    return max(dfs(root->left, answer), dfs(root->right, answer));
+    depth++;
+    return max(dfs(root->left, depth), dfs(root->right,depth));
   }
 };
 // @leet end
