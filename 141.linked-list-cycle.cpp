@@ -10,20 +10,16 @@
 class Solution {
 public:
   bool hasCycle(ListNode *head) {
-    if (!head) {
-      return false;
-    }
     ListNode *slow = head;
-    ListNode *fast = head->next;
-    while (slow != fast) {
-      if ( !fast  || !fast->next) {
-        return false;
-      }
+    ListNode *fast = head;
+    while (fast && fast->next) {
       slow = slow->next;
       fast = fast->next->next;
+      if (slow == fast) {
+        return true;
+      }
     }
-
-    return true;
+    return false;
   }
 };
 // @leet end
