@@ -5,15 +5,13 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-
-
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        return self.dfs(root, 1)
+        return self.dfs(root, 0)
 
     def dfs(self, root: Optional[TreeNode], answer) -> int:
         if root is None:
-            return answer - 1
+            return answer
         answer += 1
         return max(self.dfs(root.left, answer), self.dfs(root.right, answer))
 
