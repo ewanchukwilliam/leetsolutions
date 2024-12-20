@@ -1,35 +1,36 @@
 // @leet start
 class Solution {
-public:
-  vector<vector<int>> threeSum(vector<int> &nums) {
-    vector<vector<int>> res;
-    sort(nums.begin(), nums.end());
-    for (int i = 0; i < nums.size(); i++) {
-      if (i > 0 && nums[i] == nums[i - 1]) {
-        continue;
-      }
-      int target = -nums[i];
-      int left = i + 1;
-      int right = nums.size() - 1;
-      while (left < right) {
-        if (nums[left] + nums[right] == target) {
-          res.push_back({nums[i], nums[left], nums[right]});
-          while (left < right && nums[left] == nums[left + 1]) {
-            left++;
-          }
-          while (left < right && nums[right] == nums[right - 1]) {
-            right--;
-          }
-          left++;
-          right--;
-        } else if (nums[left] + nums[right] < target) {
-          left++;
-        } else {
-          right--;
+  public:
+    vector<vector<int>> threeSum(vector<int> &nums) {
+        vector<vector<int>> answer;
+        if (nums.size() < 3)
+            return answer;
+        sort(nums.begin(), nums.end());
+        if (nums.back() < 0)
+            return answer; // All negative numbers
+        for (int i = 0; i < nums.size() - 2; i++) {
+            if (nums[i] > 0)
+                break; // First number is positive, no solution possible
+            if (i > 0 && nums[i] == nums[i - 1])
+                continue;
+            int n = i + 1;
+            int m = nums.size() - 1;
+            while (n < m) {
+                int sum = nums[i] + nums[n] + nums[m];
+                if (sum == 0) {
+                    answer.push_back({nums[i], nums[n], nums[m]});
+                    while (n < m && nums[n] == nums[n + 1])
+                        n++;
+                    while (n < m && nums[m] == nums[m - 1])
+                        m--;
+                    n++;
+                    m--;
+                } else if (sum < 0)
+                    n++;
+                else
+                    m--;
+            }
         }
-      }
+        return answer;
     }
-    return res;
-  }
 };
-// @leet end

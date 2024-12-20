@@ -3,30 +3,37 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-
 var threeSum = function(nums) {
-	var ans = [];
-	nums = nums.sort((a, b) => a - b);
-	for (let i = 0; i < nums.length; i++) {
-		const num = nums[i];
-		if (i > 0 && num === nums[i - 1]) continue;
-		let l = i + 1;
-		let r = nums.length - 1;
-		while (l < r) {
-			sum = nums[l] + nums[r] + num;
+	let res = [];
+	nums.sort((a, b) => a - b);
+	for (let i = 0; i < nums.length - 2; i++) {
+		if (nums[i] > 0) {
+			break;
+		}
+		if (i > 0 && nums[i] === nums[i - 1]) {
+			continue;
+		}
+		let left = i + 1;
+		let right = nums.length - 1;
+		while (left < right) {
+			let sum = nums[i] + nums[left] + nums[right];
 			if (sum === 0) {
-				ans.push([nums[l], nums[r], num]);
-				l++;
-				r--;
-				while (l < r && nums[r] === nums[r + 1]) r--;
-				while (l < r && nums[l] === nums[l - 1]) l++;
+				res.push([nums[i], nums[left], nums[right]]);
+				while (left < right && nums[left] === nums[left + 1]) {
+					left++;
+				}
+				while (left < right && nums[right] === nums[right - 1]) {
+					right--;
+				}
+				left++;
+				right--;
 			} else if (sum < 0) {
-				l++;
+				left++;
 			} else {
-				r--;
+				right--;
 			}
 		}
 	}
-	return ans;
+	return res;
 };
 // @leet end
