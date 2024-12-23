@@ -1,4 +1,4 @@
-// @leet start
+
 class Solution {
   public:
     vector<vector<int>> threeSum(vector<int> &nums) {
@@ -7,10 +7,10 @@ class Solution {
             return answer;
         sort(nums.begin(), nums.end());
         if (nums.back() < 0)
-            return answer; // All negative numbers
+            return answer;
         for (int i = 0; i < nums.size() - 2; i++) {
             if (nums[i] > 0)
-                break; // First number is positive, no solution possible
+                break;
             if (i > 0 && nums[i] == nums[i - 1])
                 continue;
             int n = i + 1;
