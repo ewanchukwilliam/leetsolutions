@@ -1,10 +1,11 @@
 # @leet start
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
+        dictlist = {}
         for i in range(len(nums)):
-            for n in range(i + 1, len(nums)):
-                if nums[i] + nums[n] == target:
-                    return [i, n]
+            if target - nums[i] in dictlist:
+                return [i, dictlist[target - nums[i]]]
+            dictlist[nums[i]] = i
         return []
 
 

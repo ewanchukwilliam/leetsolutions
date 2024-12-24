@@ -5,16 +5,15 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
+	let hash = new Map();
 	for (let i = 0; i < nums.length; i++) {
-		const num1 = nums[i];
-		for (let n = i+1; n < nums.length; n++) {
-			const num2 = nums[n];
-			if (num1+num2 === target) {
-				return [i,n];
-			}
+		const num = nums[i];
+		if (hash.has(target-num)) {
+			return [hash.get(target-num), i];
+		}else {
+			hash.set(num, i);
 		}
 	}
 	return [];
-		
 };
 // @leet end
