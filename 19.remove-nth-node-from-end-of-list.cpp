@@ -10,24 +10,34 @@
  * };
  */
 class Solution {
-public:
-  ListNode *removeNthFromEnd(ListNode *head, int n) {
-    ListNode *fast = head;
-    ListNode *slow = head;
-    int i = 0;
-    while (fast) {
-      fast = fast->next;
-      if (i > n) {
-        slow = slow->next;
-      } else {
-        i++;
-      }
+  public:
+    ListNode *removeNthFromEnd(ListNode *head, int n) {
+        ListNode *answer = new ListNode();
+		answer->next = reverse(head);
+		ListNode *dummy = answer;
+        int i = 0;
+        while (dummy) {
+            if (i == n - 1 && dummy->next) {
+                dummy->next = dummy->next->next;
+            } else if (i == n - 1) {
+                dummy->next = nullptr;
+            } else {
+                dummy = dummy->next;
+            }
+            i++;
+        }
+        return reverse(answer->next);
+    };
+    ListNode *reverse(ListNode *head) {
+        ListNode *previous = nullptr;
+        ListNode *next = nullptr;
+        while (head) {
+            next = head->next;
+            head->next = previous;
+            previous = head;
+            head = next;
+        }
+        return previous;
     }
-    if (i == n) {
-      return head->next;
-    }
-		slow->next = slow->next ? slow->next->next : nullptr;
-    return head;
-  }
 };
 // @leet end

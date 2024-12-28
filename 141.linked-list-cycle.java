@@ -2,19 +2,18 @@
 /**
  * Definition for singly-linked list.
  * class ListNode {
- * int val;
- * ListNode next;
- * ListNode(int x) {
- * val = x;
- * next = null;
- * }
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
  * }
  */
 public class Solution {
-	public boolean hasCycle(ListNode head) {
+    public boolean hasCycle(ListNode head) {
 		ListNode slow = head;
 		ListNode fast = head;
-
 		while (fast != null && fast.next != null) {
 			slow = slow.next;
 			fast = fast.next.next;
@@ -24,6 +23,6 @@ public class Solution {
 			}
 		}
 		return false;
-	}
+    }
 }
 // @leet end

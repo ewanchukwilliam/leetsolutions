@@ -6,22 +6,21 @@
 #         self.next = next
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        fast = head
-        slow = head
-        i = 0
-        while fast is not None:
-            fast = fast.next
-            if i > n:
-                slow = slow.next
-            else:
-                i += 1
-        if i == n:
-            return head.next
-        if slow.next is not None:
-            slow.next = slow.next.next
-        else:
-            slow.next = None
-        return head
+        dummy = ListNode(0)
+        dummy.next = head
+        first = dummy
+        second = dummy
+
+        for i in range(1, n + 2):
+            first = first.next
+
+        while first is not None:
+            first = first.next
+            second = second.next
+
+        second.next = second.next.next
+
+        return dummy.next
 
 
 # @leet end

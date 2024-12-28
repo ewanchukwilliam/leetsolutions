@@ -1,12 +1,10 @@
 # @leet start
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        dictlist = {}
         for i in range(len(nums)):
-            if target - nums[i] in dictlist:
-                return [i, dictlist[target - nums[i]]]
-            dictlist[nums[i]] = i
+            for j in range(len(nums)):
+                if i != j and nums[i] + nums[j] == target:
+                    return [i, j]
         return []
-
-
+        
 # @leet end

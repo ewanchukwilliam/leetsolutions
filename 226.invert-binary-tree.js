@@ -15,9 +15,11 @@ var invertTree = function(root) {
 	if (!root) {
 		return null;
 	}
-	let left = invertTree(root.left);
-	root.left = invertTree(root.right);
+	let left = root.left;
+	root.left = root.right;
 	root.right = left;
+	invertTree(root.left);
+	invertTree(root.right);
 	return root;
 };
 // @leet end

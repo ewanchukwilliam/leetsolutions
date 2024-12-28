@@ -5,13 +5,13 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-	let hash = new Map();
 	for (let i = 0; i < nums.length; i++) {
-		const num = nums[i];
-		if (hash.has(target-num)) {
-			return [hash.get(target-num), i];
-		}else {
-			hash.set(num, i);
+		const num1 = nums[i];
+		for (let n = 0; n < nums.length; n++) {
+			const num2 = nums[n];
+			if (num1 + num2 === target && i !== n) {
+				return [i, n];
+			}
 		}
 	}
 	return [];

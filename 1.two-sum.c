@@ -6,7 +6,7 @@ int *twoSum(int *nums, int numsSize, int target, int *returnSize) {
     for (int i = 0; i < numsSize; i++) {
         for (int n = i + 1; n < numsSize; n++) {
             if (nums[i] + nums[n] == target) {
-                int *result = (int *)malloc(2 * sizeof(int));
+                int *result = malloc(2 * sizeof(int));
                 result[0] = i;
                 result[1] = n;
                 *returnSize = 2;
@@ -14,7 +14,7 @@ int *twoSum(int *nums, int numsSize, int target, int *returnSize) {
             }
         }
     }
-	*returnSize = 0;
+    *returnSize = 0;
     return NULL;
 }
 // @leet end
