@@ -1,18 +1,15 @@
 // @leet start
-#include <vector>
-using namespace std;
 class Solution {
 public:
-  int missingNumber(vector<int> &nums) {
-    int answer = 0;
-		for (int i = 1; i <=nums.size(); i++) {
-			answer = answer ^ i;
+    int missingNumber(vector<int>& nums) {
+		return  nums.size() * (nums.size() + 1) / 2 - sum(nums);
+    }
+	int sum(vector<int>& nums) {
+		int sum = 0;
+		for (int i = 0; i < nums.size(); i++) {
+			sum += nums[i];
 		}
-		for (int i =0; i < nums.size(); i++) {
-			answer = answer^nums[i];
-		}
-    return answer;
-		
-  }
+		return sum;
+	}
 };
 // @leet end
