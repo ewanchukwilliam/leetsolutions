@@ -9,7 +9,7 @@ var twoSum = function(nums, target) {
 		const num1 = nums[i];
 		for (let n = 0; n < nums.length; n++) {
 			const num2 = nums[n];
-			if (num1 + num2 === target && i !== n) {
+			if (num1+num2 === target && i !== n) {
 				return [i, n];
 			}
 		}

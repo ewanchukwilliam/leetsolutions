@@ -5,7 +5,7 @@ class Solution {
         int answer = 0;
         int n = nums.size();
         for (int i = 0; i < n; i++) {
-            answer ^= i ^ nums[i];
+			answer ^= i ^ nums[i];
         }
         answer ^= n;
         return answer;
