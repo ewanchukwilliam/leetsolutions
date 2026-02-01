@@ -4,11 +4,10 @@ class Solution:
         hash={}
         for i in range(0,len(nums)):
             hash[nums[i]]=i
-
         for i in range(0,len(nums)):
-            val = hash.get(target-nums[i])
-            if val is not None and val is not i:
-                return [val, i]
-        return []
+            temp = target -nums[i]
+            if temp in hash and hash[temp]!=i:
+                return [hash[temp],i]
+        return [hash[temp],i]
         
 # @leet end
