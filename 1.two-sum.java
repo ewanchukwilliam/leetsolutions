@@ -1,14 +1,14 @@
 // @leet start
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-		HashMap<Integer,Integer> set = new HashMap<>();
-		for (int i = 0; i < nums.length; i++) {
-			if (set.containsKey(target - nums[i])) {
-				return new int[]{set.get(target - nums[i]), i};
+		for (int i = 0; i < nums.length ; i++) {
+			for (int n = i+1; n < nums.length; n++) {
+				if (target== nums[i]+ nums[n]) {
+					return new int[]{ i,n };
+				}
 			}
-			set.put(nums[i], i);
 		}
-		return new int[]{-1, -1};
+		return new int[0];
     }
 }
 // @leet end
