@@ -1,13 +1,18 @@
 // @leet start
 function twoSum(nums: number[], target: number): number[] {
-	const map = new Map<number, number>();
+	const map = new Map<any, any>;
 	for (let i = 0; i < nums.length; i++) {
-		const seek = target - nums[i];
-		if (map.has(seek)) {
-			return [map.get(seek)!, i];
-		}
-		map.set(nums[i], i);
+		const num = nums[i];
+		map.set(num, i);
 	}
-	return [];
-}
+	for (let i = 0; i < nums.length; i++) {
+		const num = nums[i];
+		if (map.has(target-num) && map.get(target-num)!== i) {
+			return [ map.get(target-num), i]
+		}
+	}
+	return []
+	
+    
+};
 // @leet end
