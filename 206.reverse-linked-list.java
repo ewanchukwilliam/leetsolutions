@@ -12,7 +12,7 @@
 class Solution {
     public ListNode reverseList(ListNode head) {
 		ListNode previous = null;
-		ListNode next = head;
+		ListNode next = null;
 		while (head!=null) {
 			next=head.next;
 			head.next=previous;
