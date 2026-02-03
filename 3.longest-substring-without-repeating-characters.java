@@ -6,20 +6,18 @@ import java.math.*;
 // @leet start
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-		Map<Character,Integer> map = new HashMap<>();
-		Integer soln= 0;
-		Integer last=0;
+		Integer last = 0;
+		Integer ans = 0;
+		Map<Character, Integer> map = new HashMap<>();
 		for (int i = 0; i < s.length(); i++) {
-			char c = s.charAt(i);
-			if (map.containsKey(c) && map.get(c)>=last) {
+			Character c = s.charAt(i);
+			if (map.containsKey(c) && map.get(c) >= last) {
 				last=map.get(c)+1;
 			}
 			map.put(c,i);
-			soln=Math.max(soln, i-last+1);
-				
+			ans=Math.max(ans, i-last+1);
 		}
-		return soln;
-        
+		return ans;
     }
 }
 // @leet end
